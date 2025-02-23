@@ -34,12 +34,13 @@ class ServidorHTTP {
     //ante una petición entrante, procesa la petición por el socket cliente
     //por donde la recibe
     while (true) {
-      //a la espera de peticiones
-      socCliente = socServidor.accept();
-      //atiendo un cliente
-      Hilo hilo = new Hilo(socCliente);
-      Thread h = new Thread(hilo);
-      h.start();
+    // A la espera de peticiones
+    socCliente = socServidor.accept();
+    System.out.println("Atendiendo a un nuevo cliente...");
+
+    // Se crea un nuevo hilo para procesar la petición
+    Thread hiloCliente = new Thread(new Hilo(socCliente));
+    hiloCliente.start();
     }
   }
 
